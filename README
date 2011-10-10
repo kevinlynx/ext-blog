@@ -1,0 +1,70 @@
+ABOUT
+
+ext-blog is a common lisp blog engine. It supports custom theme and you can
+port a WordPress theme for it.
+
+FEATURES
+
+* Basic blog engine features including: post an entry, display an entry, post
+  a comment
+* Support admin manage page so that you can manage your blog online
+* Support custom themes
+* Support RSS feed, only full export
+* Support metaweblog API, only post/edit new entry
+* Some basic themes ported by author
+
+The more is coming.
+
+INSTALL
+
+Currently ext-blog is only tested on SBCL, so I strongly suggest you to use 
+SBCL. And ext-blog depends on some third-party lisp libraries, so I suggest you
+to use quick lisp to install these libraries. 
+
+When you download ext-blog full source codes, go to ext-blog root directory, 
+and run SBCL, i.e:
+
+    cd ext-blog
+    SBCL
+
+And if you're the first time to load ext-blog, you can load dep.lisp to intall
+these third-party libraries by quick lisp first, i.e:
+
+    (load "dep.lisp")
+
+And if you already have installed quick lisp, it will download some libraries 
+first.
+
+After that, everything is ready. You can load ext-blog by asdf, i.e:
+
+    (asdf:load-system :ext-blog)
+
+Sometimes asdf display an error like you do not have access to create a file, 
+If so, you can run SBCL as root.
+
+After that, you can run ext-blog now, i.e:
+
+    (ext-blog:start)
+
+ext-blog will launch a web server using hunchentoot at port 8000. So you can 
+visit it to test:
+
+    http://localhost:8000
+
+If you're the first time to run ext-blog, there's no data files for your blog,
+so you will be indirected to initializing page to setup your blog. The setup 
+page only needs admin user name and password.
+
+After that, everytime you want to launch ext-blog, you can only load it in SBCL
+ and start it, i.e:
+
+    (asdf:load-system :ext-blog)
+    (ext-blog:start)
+
+Reporting Bugs
+
+ext-blog is not well tested currently. If you find any bug or problems you can
+ send me an email, and I will try to help you out. Feel free to send email to 
+me kevinlynx at gmail dot com.
+
+
