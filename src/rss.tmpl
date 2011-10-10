@@ -1,0 +1,23 @@
+/* output rss2.0 format */
+{namespace ext-blog.rss}
+{template rss}
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<rss version='2.0'>
+    <channel>
+        <title>{$title}</title>
+        <link>{$link}</link>
+        <description>{$description}</description>
+        <pubDate>{$pubdate}</pubDate>
+        {foreach $entry in $entrylist}
+            <item>
+                <title>{$entry.title}</title>
+                <link>{$entry.link}</link>
+                <description>{$entry.content}</description>
+                <pubDate>{$entry.pubdate}</pubDate>
+                <guid>{$entry.link}</guid>
+            </item>
+        {/foreach}
+    </channel>
+</rss>
+{/template}
+

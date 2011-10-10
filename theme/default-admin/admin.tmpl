@@ -1,0 +1,401 @@
+
+{namespace default.admin.view}
+
+{template login}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{\n}
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="default-admin/css/css-login.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="default-admin/js/common.js"></script>
+        <title>Login</title>
+    </head>
+    <body>
+        <form name="f" method="post" action="/login">
+            <div class="login-main">
+                <div class="login-top"></div>
+                <div class="login-input">
+                    <span>User</span>
+                    <div>
+                        <input type="text" name="user" id="user" />
+                    </div>
+                    <span>Password</span>
+                    <div>
+                        <input type="password" name="pw" id="pw" />
+                    </div>
+                </div>
+                <div class="login-button">
+                    <div class="checkbox"> 
+                        <input type="checkbox" name="ispersis" id="ispersis" checked="true" value="1" />
+                        <span>Remember me</span>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Login" class="submit">
+                    </div>
+                </div>
+                <div style=" clear:both;"></div>
+                <div class="login-bottom"></div>
+                <div class="back">
+                    <a href="/index">&laquo;Back</a>
+                </div>
+            </div>
+        </form>
+        <script>focusEle('user');</script>
+    </body>
+</html>
+{/template}
+
+{template initialize}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{\n}
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset='utf-8'" />
+        <link rel="stylesheet" href="default-admin/css/css-login.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="default-admin/js/common.js"></script>
+        <title>Initialize</title>
+    </head>
+    <body>
+        <form name="f" method="post" action="/initialize">
+            <div class="login-main">
+                <div class="login-top">Initliaze your blog</div>
+                <div class="login-input">
+                    <span>User</span>
+                    <div>
+                        <input type="text" name="user" id="user" />
+                    </div>
+                    <span>Password</span>
+                    <div>
+                        <input type="password" name="pw" id="pw" />
+                    </div>
+                    <span>Confirm Password</span>
+                    <div>
+                        <input type="password" name="confirmpw" id="pw" />
+                    </div>
+                </div>
+                <div class="login-button">
+                    <div class="button">
+                        <input type="submit" value="Create" class="submit">
+                    </div>
+                </div>
+                <div style=" clear:both;"></div>
+                <div class="login-bottom"></div>
+            </div>
+        </form>
+        <script>focusEle('user');</script>
+    </body>
+</html>
+{/template}
+
+{template header}
+<div class="center">
+    /* the top horxxx buttons */
+    <table id="header" cellspacing="0" cellpadding="0" width="988" border="0">
+        <tbody>
+            <tr>
+                <td width="9" id="headerleft"></td>
+                <!--<td width="125"  align="left"><a href="/manage" title="Back index">ext-blog</a></td>-->
+                <!--<td class="vesion" width="20">0.1.0</td>-->
+                <td class="home" align="left"><a href="/manage">ext-blog</a></td>
+                <td class="home" align="left"><a href="/index" target="_blank" title="View blog in new window">View blog</a></td>
+                <td align=right nowrap class="headtext">
+                    <a href="/manage/configure"><img src="default-admin/images/setting.gif" align="absmiddle" border="0"/>Setting</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="/manage">Manage index</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="/logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+                <td width="9" id="headerright" ></td>
+            </tr>
+        </tbody>
+    </table>
+    /* the main manage table */
+    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tbody >
+            <tr>
+                /* the left side menu */
+                <td valign="top" align="left" width="114">
+                    <div id="sidebartop"></div>
+	                <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                        <tbody>
+                            <tr>
+                                <td valign="top" align="left" width="114">
+                                    <div id="sidebar">
+                                        <div class="sidebarsubmenu" id="menu_wt"><a href="/manage/new">New post</a></div>
+                                        <div class="sidebarsubmenu" id="menu_post"><a href="/manage/post">Posts</a></div>
+                                        <div class="sidebarsubmenu" id="menu_cm"><a href="/manage/comment">Comments</a> </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                /* the manage content */
+                <td id="container" valign="top" align="left">
+{/template}
+
+{template footer}
+                </td> /* end container */
+            </tr>
+        </tbody>
+    </table> /* end main manage table */
+</div> /* center */
+{/template}
+
+{template posts}
+<form action="/manage/post/delete" method="post" name="form_post" id="form_post">
+    <table width="100%" id="adm_post_list" class="item_list">
+  	    <thead>
+            <tr>
+                <th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+                <th width="480"><b>Title</b></th>
+		        <th width="100"><b>Author</b></th>
+                <th width="200"><b>Time</b></th>
+                <th width="50" class="tdcenter"><b>Comment</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $item in $posts}
+             <tr>
+                <td><input type="checkbox" value="{$item.id}" name="post[]" class="ids" /></td>
+                <td>
+                    <a href="/view/{$item.id}" title="{$item.title}">{$item.title}</a> 
+                    <span style="display:none; margin-left:8px;">    
+                        <a href="/manage/post/edit/{$item.id}">Edit</a>
+                        <a href="javascript: ext_confirm({$item.id}, 'post');">Delete</a>
+                    </span>
+                </td>
+                <td>
+                    {$item.author}
+                </td>
+                <td>
+                    {$item.createdtime}
+                </td>
+                <td>
+                    {$item.commentcnt}
+                </td>
+             </tr>
+            {/foreach}
+        </tbody>
+    </table>
+	<div class="list_footer">
+        Selected：
+        <a href="javascript:postact('del');">Delete</a>
+        <input name="operate" id="operate" value="" type="hidden" />
+	</div>
+    <div class="page">{length($posts)} posts</div> 
+</form>
+<script>
+{literal}
+$(document).ready(function(){
+	$("#adm_post_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_post_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+});
+function postact(act){
+	if (getChecked('ids') == false) {
+		alert('Please select some posts');
+		return;
+	}
+	if(act == 'del' && !confirm('Are you sure to delete these posts？')){return;}
+	$("#operate").val(act);
+	$("#form_post").submit();
+}
+$("#menu_post").addClass('sidebarsubmenu1');
+{/literal}
+</script>
+{/template}
+
+{template comments}
+<form action="/manage/comment/delete" method="post" name="form_com" id="form_com">
+    <table width="100%" id="adm_comment_list" class="item_list">
+  	    <thead>
+            <tr>
+                <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+                <th width="350"><b>Content</b></th>
+		        <th width="300"><b>Author</b></th>
+                <th width="250"><b>Post</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $item in $comments}
+             <tr>
+                <td><input type="checkbox" value="{$item.id}" name="com[]" class="ids" /></td>
+                <td>
+                    <a href="/view/{$item.postid}#comment{$item.id}" title="{$item.author}">{$item.content}</a> 
+                    <br/>
+                    {$item.timedesc}
+                    <span style="display:none; margin-left:8px;">    
+                        <a href="javascript: ext_confirm({$item.id}, 'comment');">Delete</a>
+                        <a href="/view/{$item.postid}#comment{$item.id}">Reply</a>
+                    </span>
+                </td>
+                <td>
+                    {if $item.url}
+                        <a href="{$item.url}">{$item.author}</a>
+                    {else}
+                        {$item.author}
+                    {/if}
+                    <br/>
+                    Email: {$item.email}
+                </td>
+                <td><a href="/view/{$item.postid}" target="_blank" title="View post">{$item.posttitle}</a></td>
+             </tr>
+            {/foreach}
+        </tbody>
+    </table>
+	<div class="list_footer">
+        Selected：
+        <a href="javascript:commentact('del');">Delete</a>
+        <input name="operate" id="operate" value="" type="hidden" />
+	</div>
+    <div class="page">{length($comments)} comments</div> 
+</form>
+<script>
+{literal}
+$(document).ready(function(){
+	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_comment_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+});
+function commentact(act){
+	if (getChecked('ids') == false) {
+		alert('Please select some comments');
+		return;
+	}
+	if(act == 'del' && !confirm('Are you sure to delete these comments？')){return;}
+	$("#operate").val(act);
+	$("#form_com").submit();
+}
+$("#menu_cm").addClass('sidebarsubmenu1');
+{/literal}
+</script>
+{/template}
+
+{template newpost}
+<script charset="utf-8" src="default-admin/editor/kindeditor.js"></script>
+<div class=containertitle><b>New post</b><span id="msg_2"></span></div>
+<div id="msg"></div>
+<form action={if $postid}"/manage/post/edit/{$postid}" {else} "/manage/new" {/if} method="post" /*enctype="multipart/form-data"*/ id="addlog" name="addlog">
+    <table cellspacing="1" cellpadding="4" width="720" border="0">
+        <tbody>
+            <tr nowrap="nowrap">
+                <td>
+                    <b>Title:</b><br/>
+                    <input type="text" maxlength="200" style="width:380px;" name="title" id="title" value="{$title}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Content:</b>
+		            <textarea id="content" name="content" cols="100" rows="8" style="width:719px; height:460px;">
+                        {$content}
+                    </textarea>
+                    <script>loadEditor('content');</script>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	<table cellspacing="1" cellpadding="4" width="720" border="0">
+		<tr>
+            <td align="center"><br>
+                <input type="submit" value="Post" onclick="return ext_checkform();" class="button" />
+		    </td>
+        </tr>
+    </table>
+</form>
+<div class=line></div>
+<script>
+{literal}
+$("#title").focus();
+$("#menu_wt").addClass('sidebarsubmenu1');
+{/literal}
+</script>
+{/template}
+
+{template editpost}
+    {call newpost data="all" /}
+{/template}
+
+{template configureBlogger}
+<div class="containertitle2">
+    <a class="navi3" href="/manage/configure/blogger">General</a>
+    <a class="navi4" href="/manage/configure/profile">Profile</a>
+</div>
+<form action="/manage/configure/blogger" method="post" name="input" id="input">
+    <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+        <tbody>
+            <tr nowrap="nowrap">
+                <td width="18%" align="right">Blog name</td>
+                <td width="82%"><input maxlength="200" size="35" value="{$blogname}" name="blogname" /></td>
+            </tr>
+            <tr nowrap="nowrap">
+                <td align="right" valign="top">Blog description</td>
+                <td><textarea name="blogdesc" cols="" rows="2" style="width:300px;">{$blogdesc}</textarea></td>
+            </tr>
+            <tr nowrap="nowrap">
+                <td align="right" valign="top">Footer html</td>
+                <td><textarea name="footerhtml" cols="" rows="5" style="width:300px;">{$footerhtml}</textarea></td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">Theme </td>
+                <td>
+                    <select name="theme">
+                        {foreach $item in $themes}
+                            <option value="{$item.name}" {if $item.name==$curtheme}selected="selected"{/if}>{$item.name}</option>
+                        {/foreach}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <input type="submit" value="Update" class="button"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+{/template}
+
+{template configureProfile}
+<div class="containertitle2">
+    <a class="navi1" href="/manage/configure/blogger">General</a>
+    <a class="navi2" href="/manage/configure/profile">Profile</a>
+</div>
+<div style="margin-left:20px;">
+    <form action="/manage/configure/profile" method="post" name="blooger" id="blooger">
+        <div id="chgpwd">
+            <li>Login name</li>
+            <li><input maxlength="100" style="width:200px;" name="username" value="{$author}"></li>
+            <li>Old password</li>
+            <li><input type="password" maxlength="200" style="width:200px;" value="" name="oldpwd"/></li>
+            <li>New password</li>
+            <li><input type="password" maxlength="200" style="width:200px;" value="" name="newpwd"/></li>
+            <li>Confirm password</li>
+            <li><input type="password" maxlength="200" style="width:200px;" value="" name="confirmpwd"/></li>
+            <li><input type="submit" value="Update" class="submit"></li>
+        </div>
+    </form>
+</div>
+{/template}
+
+{template finalizePage}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="default-admin/style/default/style.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="default-admin/js/jquery-1.2.6.js"></script>
+        <script type="text/javascript" src="default-admin/js/common.js"></script>
+        <link href="default-admin/css/css-main.css" type="text/css" rel="stylesheet" />
+        <title>Manage center</title>
+    </head>
+    <body>
+            {$header |noAutoescape}
+            {$content |noAutoescape}
+            {$footer |noAutoescape}
+    </body>
+</html>
+{/template}
+

@@ -1,0 +1,134 @@
+
+{namespace pockett.view}
+
+{template finalizePage}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   {\n}
+    <html xmlns="http://www.w3.org/1999/xhtml">
+	    <head>
+      	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link rel="stylesheet" href="./pockett/style.css" type="text/css" />
+            {if $title}
+                <title>{$title}</title>
+            {/if}
+	    </head>
+	    <body>
+            {$header |noAutoescape}
+            {$content |noAutoescape}
+            {$comment |noAutoescape}
+            {$footer |noAutoescape}
+        </body>
+    </html>
+{/template}
+
+{template header}
+    <div id="wrapper">
+        <div class="content">
+            <div id="menu">
+                <ul>
+                    <li><a href="{$index}">Index</a></li>
+                </ul>
+            </div>
+            <div id="blog_title">
+                <h1 class="blog_title"><a href="{$index}">{$blogname}</a></h1>
+            </div>
+            <div id="about">
+                <p>{$blogdesc}</p>
+            </div>
+{/template}
+
+{template content}
+    <div id="primary">
+        <div class="post">
+            <h1 class="article_title">
+                <a href="{$postlink}" title="Permanent Link to {$title}">{$title}</a>
+            </h1>
+            <div class="entry">
+                {$content |noAutoescape}
+            </div>
+        </div>
+        <div class="postmetadata_entry">
+            This entry was posted on {$createdtime}.
+            {if $revisedtime}
+                And is modified on {$revisedtime}
+            {/if}
+        </div>
+        <div class="navigation">
+            <div class="alignleft">
+                {if $prevlink}
+                    <a href="{$prevlink}">Prev: {$prevtitle}</a>
+                {else}
+                    No previous entry
+                {/if}
+            </div>
+            <div class="alignright">
+                {if $nextlink}
+                    <a href="{$nextlink}">Next: {$nexttitle}</a>
+                {else}
+                    No next entry
+                {/if}
+            </div>
+        </div>
+{/template}
+
+{template comment}
+    <br/>
+    <br/>
+    <h2 id="comments" class="comments_title">{$comment_cnt} comments </h2>
+    <ol class="commentlist">
+        {foreach $item in $comments}
+            <li class="{if round(index($item)%2) == 0} alt {else} {/if}" id="comment{$item.id}">
+                <div class="comment_meta">
+                    <a href="#comment{$item.id}" class="commentno" title="">#{index($item)+1}</a>
+                    {if $item.url}
+                        <a href="{$item.url}">{$item.author}</a> 
+                    {else}
+                        {$item.author}
+                    {/if}
+                    on {$item.timedesc}
+                </div>
+                <br/>
+                {$item.content | noAutoescape}
+            </li>
+        {/foreach}
+    </ol>
+    <h2 id="respond" class="comments_title">Leave a Reply</h2>
+    <br/>
+    <form action="/new-comment" method="post" id="commentform">
+        <p>
+            <label for="author">Name(required)</label><br/>
+            <input type="text" name="author" id="author" size="22" tabindex="1"/>
+        </p>
+        <p>
+            <label for="email">Email(will not be published)</label><br/>
+            <input type="text" name="email" id="email" size="22" tabindex="2"/>
+        </p>
+        <p>
+            <label for="url">Website</label><br/>
+            <input type="text" name="url" id="url" size="22" tabindex="3"/>
+        </p>
+        <p>
+            <textarea name="content" id="comment" cols="100%" rows="10" tabindex="4"></textarea>
+        </p>
+        <p>
+            <input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+            <input type="hidden" name="postid" value="{$postid}"/>
+        </p>
+    </form>
+{/template}
+
+{template footer}
+    </div> /* end primary */
+    <div id="footer">
+        <div class="to_top">
+            <a href="#menu" title="Top of Page">&nbsp;</a>
+        </div>
+        <p>Copyright &copy; {$author}, Powerd by Lisp and restas. The theme is 
+            <a href="http://www.nyssajbrown.net/pockett/" title="PocketT theme by Nyssa Brown Design">PocketT</a>
+            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$loginurl}">Login</a>
+        </p>
+    </div>
+    </div> /* end content */
+    </div> /* end wrapper */
+{/template}
+

@@ -1,0 +1,10 @@
+(ql:quickload 'restas)
+(ql:quickload 'cl-store)
+(ql:quickload 'closure-template)
+(ql:quickload 'local-time)
+(ql:quickload 's-xml-rpc)
+(ql:quickload 'skippy)
+(ql:quickload 'clx)
+(ql:quickload 'zpng)
+(ql:quickload 'gzip-stream)
+

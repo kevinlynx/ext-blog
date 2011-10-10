@@ -1,0 +1,297 @@
+/*theme template file*/
+
+{namespace isimple.view}
+
+{template finalizePage} 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+ {\n}
+    <html xmlns="http://www.w3.org/1999/xhtml">
+	    <head>
+      	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <style type="text/css" media="screen">@import url("./isimple/style.css");</style>
+            <link rel="stylesheet" href="./isimple/css/zh_CN.css" type="text/css" media="screen"/>
+            <script type="text/javascript" src="./isimple/js/util.js"></script>
+            {if $title}
+                <title>{$title}</title>
+            {/if}
+	    </head>
+	    <body>
+            {$header |noAutoescape}
+            {$content |noAutoescape}
+            {$comment |noAutoescape}
+            {$sidebar |noAutoescape}
+            {$footer |noAutoescape}
+        </body>
+    </html>
+{/template}
+
+{template header}
+<div id="wrap">
+    <div id="container">
+        <div id="header">
+            <div id="caption">
+                <h1 id="title"><a href="{$index}">{$blogname}</a></h1>
+                <div id="tagline">{$blogdesc}</div>
+            </div>
+            <div id="searchbox">
+                /*<form action="http://www.google.com/cse" method="get">
+                    <div class="content">
+                        <input type="text" class="textfield" name="q" size="24" />
+                        <input type="hidden" name="cx" value="ext-blog" />
+                        <input type="hidden" name="ie" value="UTF-8" />
+                    </div>
+                </form>*/
+			    <form action="/index" method="get">
+                    <div class="content">
+                        <input type="text" class="textfield" name="s" size="24" value="" />
+                    </div>
+                </form>
+            </div>
+            <div class="fixed"></div>
+            <div id="navigation">
+                <ul id="menus">
+                    <li class="current_page_item"><a title="Home page" href="{$index}">Home</a></li>
+                    <li class="page_item page-item-2"><a title="About page" href="{$about}">About</a></li>
+                    <li class="current_page_item"><a class="home" title="Home" href="{$index}">Home</a></li>
+                </ul>
+                <div class="fixed"></div>
+            </div>
+            <div class="fixed"></div>
+        </div> /* header */
+        <div id="content">
+            <div id="main">
+{/template}
+
+{template footer}
+</div> /* content */
+<div id="footer">
+    <a id="gotop" href="#" onclick="MGJS.goTop();return false;">Top</a>
+    <div id="copyright">
+        Copyright &copy; {$author}, Powerd by Lisp and restas. 
+        <strong><a href="{$loginurl}" title="Login to manage">Login</a></strong>
+    </div>
+	<div id="themeinfo">
+		Theme by <a href="http://www.neoease.com/">mg12</a>, modified by <a href="http://jtsj.net.cn/">Johnny</a>, ported by Kevin Lynx.
+	</div>
+</div> /* footer */
+</div> /* container */
+</div> /* wrap */
+{$html | noAutoescape} /* footer html */
+</body>
+</html>
+{/template}
+
+{template single}
+<div id="postpath">
+    <a title="Home page" href="/index">Home</a> &gt; {$title}
+</div>
+<div class="post" id="{$id}">
+    <h2><a class="title" href="{$postlink}" rel="bookmark">{$title}</a></h2>
+    <div class="info">
+        <span class="date">{$createdtime}</span>
+        <div class="act">
+            <span class="comments"><a href="#comments">View comments</a></span>
+            <span class="addcomment"><a href="#respond">Add comment</a></span>
+            <div class="fixed"></div>
+        </div>
+        <div class="fixed"></div>
+    </div>
+    <div class="content">
+        {$content | noAutoescape}
+        <div class="fixed"></div>
+    </div>
+</div> /* post */
+<div id="postnavi">
+    <span class="prev">
+        {if $prevlink} 
+            <a href="{$prevlink}">Prev: {$prevtitle}</a>
+        {/if}
+    </span>
+    <span class="next">
+        {if $nextlink} 
+            <a href="{$nextlink}">Next: {$nexttitle}</a>
+        {/if}
+    </span>
+    <div class="fixed"></div>
+</div>
+{/template}
+
+{template page}
+{if $posts}
+    {foreach $post in $posts}
+        <div class="post" id="post-{$post.id}">
+            <h2><a class="title" href="{$post.postlink}">{$post.title}</a></h2>
+            <div class="info">
+                <span class="date">{$post.createdtime}</span>
+                <div class="act">
+                    <span class="comments"><a href="{$post.postlink}#comments">Comments</a></span>
+                    <div class="fixed"></div>
+                </div>
+                <div class="fixed"></div>
+            </div>
+            <div class="content">
+                {$post.content | noAutoescape}
+                <p class="under">
+                    <span class="tags"></span>
+                </p>
+                <div class="fixed"></div>
+            </div>
+        </div>
+    {/foreach}
+    <div id="pagenavi">
+        {if $prevpage}
+            <span class="newer"><a href="{$prevpage}">Newer entries</a></span>
+        {/if}
+        {if $nextpage}
+            <span class="older"><a href="{$nextpage}">Older entries</a></span>
+        {/if}
+        <div class="fixed"></div>
+    </div>
+{else}
+<div class="errorbox">Sorry, no posts yet</div>
+{/if}
+{/template}
+
+{template comment}
+<script type="text/javascript" src="./isimple/js/comment.js"></script>
+<div id="comments">
+    <div id="cmtswitcher">
+        <a id="commenttab" class="curtab" href="#comments">{$comment_cnt} Comments</a>
+        <span class="addcomment"><a href="#respond">Leave a comment</a></span>
+        <div class="fixed"></div>
+    </div>
+    <div id="commentlist">
+        <ol id="thecomments">
+            {if $comments}
+            {else}
+                <li class="messagebox">
+                    No comments yet.
+                </li>
+            {/if}
+            {foreach $item in $comments}
+                <li class="comment regularcomment" id="comment{$item.id}">
+                    <span class="comment_top"></span>
+                    <span class="comment_mid">
+                        <div id="commentbody-{$item.id}">
+                            <p>{$item.content | noAutoescape}</p>
+                        </div>
+                    </span>
+                    <span class="comment_bot"></span>
+                    <cite>
+                        {if $item.url}
+                            <a id="commentauthor-{$item.id}" href="{$item.url}">{$item.author}</a>
+                        {else}
+                            <span id="commentauthor-{$item.id}">{$item.author}</span>
+                        {/if}
+                    </cite> Says
+                    <small class="commentdata">
+                        @{$item.timedesc} | 
+                        <a href="#comment{$item.id}">#{index($item)+1}</a> &nbsp;&nbsp;
+                        <span class="act">
+                            <a href="javascript:void(0);" onclick="MGJS_CMT.reply('commentauthor-{$item.id}', 'comment{$item.id}', 'comment');">Reply</a>
+                            <a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-{$item.id}', 'comment{$item.id}', 'commentbody-{$item.id}', 'comment');">Quote</a>
+                        </span>
+                    </small>
+                    <div class="fixed"></div>
+                </li>
+            {/foreach}
+        </ol>
+    </div> /* comment list */
+</div> /* comments */
+<form action="/new-comment" method="post" id="commentform">
+    <div id="respond">
+        <div class="author_info">
+            <div class="row">
+                <input type="text" name="author" id="author" class="textfield" size="24" tabindex="1"/>
+                <label for="author" class="small">Name(required)</label>
+            </div>
+            <div class="row">
+                <input type="text" name="email" id="email" class="textfield" size="24" tabindex="2"/>
+                <label for="email" class="small">Email(will not be published)</label>
+            </div>
+            <div class="row">
+                <input type="text" name="url" id="url" class="textfield" size="24" tabindex="3"/>
+                <label for="url" class="small">Website</label>
+            </div>
+            <div class="row">
+                <label class="small">Verify code</label>
+                <img id="verifypic" src="/verifypic"/>
+                <input type="text" name="verify" id="verify" class="textverify" size="5" tabindex="6"/>
+                <a href="javascript:refresh_verify()" title="Refresh the verify code">Refesh</a>
+            </div>
+        </div>
+        <div class="row">
+            <textarea name="content" id="comment" tabindex="4" rows="8" cols="50" onkeydown="{literal}if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};{/literal}"></textarea>
+        </div> /* row */
+        <div id="submitbox">
+            <div class="floatright">
+                <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Submit Comment(Ctrl+Enter)"/>
+            </div>
+            <input type="hidden" name="postid" value="{$postid}"/>
+            <div class="fixed"></div>
+        </div>
+    </div>
+</form>
+{literal}
+<script type="text/javascript">
+    function refresh_verify() { 
+        document.getElementById("verifypic").src="/verifypic?templ="+(new Date().getTime());
+    }
+</script>
+{/literal}
+{/template}
+
+{template sidebar}
+</div> /* main */
+<div id="sidebar">
+    <div id="northsidebar" class="sidebar">
+        <div class="widget feeds_weight">
+            <div class="content">
+                <a title="Subscribe to this blog..." id="feedrss" href="{$feedurl}">Subscribe to this blog</a>
+                <br/>
+                <div id="feed_readers">
+                    <a class="reader first" title="Subscribe with Google" href="http://fusion.google.com/add?feedurl={$feedurl}"><img src="isimple/img/feed_google.gif" alt="Google"/></a>
+                    <a class="reader" title="Subscribe with Xian Guo" href="http://www.xianguo.com/subscribe.php?url={$feedurl}"><img src="isimple/img/feed_xianguo.gif" alt="Xian Guo"/></a>
+                </div>
+                <div class="fixed"></div>
+            </div>
+        </div>
+        <div class="widget">
+            <h3>Recent Posts</h3>
+            <div class="content">
+                <ul>
+                    {foreach $p in $posts}
+                        <li><a href="{$p.url}">{$p.title}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+            <div class="columnbot"></div>
+        </div>
+        <div class="widget">
+            <h3>Recent Comments</h3>
+            <div class="content">
+                <ul>
+                    {foreach $c in $comments}
+                        <li><a href="/view/{$c.postid}#comment{$c.id}">{$c.brief}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="centersidebar" class="sidebar">
+    </div>
+    <div id="southsidebar" class="siderbar">
+        <div class="widget">
+            <h3>Meta</h3>
+            <div class="content">
+                <ul>
+                    <li><a href="/login">Login</a></li>
+                </ul>
+            </div>
+            <div class="columbot"></div>
+        </div>
+    </div> /* southsidebar */
+</div> /* sidebar */
+<div class="fixed"></div>
+{/template}
+

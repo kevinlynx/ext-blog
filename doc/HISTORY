@@ -1,0 +1,16 @@
+9.22.2011
+
+Change veryfi-code to generate an expression (+/*).
+
+9.16.2011
+
+Use flexi-streams to make the verify-code generation more reasonable. Now it generate picture in memory and send the memory data to browser directly, instead output it to a file and then read the file.
+
+9.15.2011
+
+Add a simple verify code, to prevent spam comments
+
+8.25.2011
+
+Add an English version README file.
+
