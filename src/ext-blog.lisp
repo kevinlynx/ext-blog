@@ -16,7 +16,9 @@
     (setf hunchentoot:*message-log-pathname* message-log-path)))
 
 (defun start (&key (port 8080))
-  (kl-verify:load-font "data/wenquanyi_12ptb.pcf")
+  (let ((font "data/wenquanyi_12ptb.pcf"))
+    (when (probe-file font)
+      (kl-verify:load-font "data/wenquanyi_12ptb.pcf")))
   (load-themes)
   (mount-file-publisher)
   (load-blog)
