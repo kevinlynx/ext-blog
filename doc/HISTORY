@@ -1,3 +1,7 @@
+12.3.2011
+
+Update some dependent libraries, fix hunchentoot:*access-log-path* compile error.
+
 9.22.2011
 
 Change veryfi-code to generate an expression (+/*).
