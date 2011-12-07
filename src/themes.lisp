@@ -28,37 +28,45 @@
   (push-publish-file (concatenate 'string *entry-static* "*/"))
   (push-publish-file (concatenate 'string *entry-static* "*/*/")))
 
+(defclass nil-route (routes:proxy-route) ())
+
+(defmethod routes:route-check-conditions ((route nil-route) bindings)
+  t)
+
+(defun @nil-route-require (route)
+  (make-instance 'nil-route :target route))
+
 (defun mount-file-publisher ()
   "Mount restas.file-publisher to serve static files"
   (push-entry-static-path)
   (restas:mount-submodule 
-    -view-static- (#:restas.file-publisher)
+    -view-static- (#:restas.file-publisher @nil-route-require)
     ;; Damn url path...
     (restas.file-publisher:*baseurl* '("view"))
     (restas.file-publisher:*directory* *publish-root*)
     (restas.file-publisher:*files* *publish-files*))
   (restas:mount-submodule 
-    -page-static- (#:restas.file-publisher)
+    -page-static- (#:restas.file-publisher @nil-route-require)
     (restas.file-publisher:*baseurl* '("page"))
     (restas.file-publisher:*directory* *publish-root*)
     (restas.file-publisher:*files* *publish-files*))
   (restas:mount-submodule 
-    -manage-config-static- (#:restas.file-publisher)
+    -manage-config-static- (#:restas.file-publisher @nil-route-require) 
     (restas.file-publisher:*baseurl* '("manage" "configure"))
     (restas.file-publisher:*directory* *publish-root*)
     (restas.file-publisher:*files* *publish-files*))
   (restas:mount-submodule 
-    -manage-post-edit- (#:restas.file-publisher)
+    -manage-post-edit- (#:restas.file-publisher @nil-route-require)
     (restas.file-publisher:*baseurl* '("manage" "post" "edit"))
     (restas.file-publisher:*directory* *publish-root*)
     (restas.file-publisher:*files* *publish-files*))
   (restas:mount-submodule 
-    -manage-static- (#:restas.file-publisher)
+    -manage-static- (#:restas.file-publisher @nil-route-require)
     (restas.file-publisher:*baseurl* '("manage"))
     (restas.file-publisher:*directory* *publish-root*)
     (restas.file-publisher:*files* *publish-files*))
   (restas:mount-submodule 
-    -static- (#:restas.file-publisher)
+    -static- (#:restas.file-publisher @nil-route-require)
     (restas.file-publisher:*directory* *publish-root*)
     (restas.file-publisher:*files* *publish-files*)))
 

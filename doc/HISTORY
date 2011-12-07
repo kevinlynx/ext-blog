@@ -1,3 +1,7 @@
+12.7.2011
+
+Add a nil decorator to adapter to the newest restas.
+
 12.3.2011
 
 Update some dependent libraries, fix hunchentoot:*access-log-path* compile error.
