@@ -4,7 +4,7 @@
   :version "0.10"
   :author "Ingvar Mattsson <ingvar@hexapodia.net>"
   :license "MIT"
-  :depends-on (#:skippy #:clx #:zpng #:gzip-stream)
+  :depends-on (#:skippy #:clx #:zpng #:gzip-stream #:flexi-streams)
   :components ((:file "package")
 	       (:file "helpers" :depends-on ("package"))
 	       (:file "image" :depends-on ("package"))

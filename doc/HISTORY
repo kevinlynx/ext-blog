@@ -1,6 +1,7 @@
 12.7.2011
 
-Add a nil decorator to adapter to the newest restas.
+1. Add a nil decorator to adapter to the newest restas.
+2. Support Clozure CL now!
 
 12.3.2011
 

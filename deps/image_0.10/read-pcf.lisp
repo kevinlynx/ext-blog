@@ -176,7 +176,8 @@
       
       (loop for pent across proptab
 	 do (setf (name pent)
-		  (sb-ext:octets-to-string
+		  (;sb-ext:octets-to-string
+           flexi-streams:octets-to-string ;; modified by Kevin Lynx 12.7.2011
 		   string-data
 		   :start (name-offset pent)
 		   :end (position 0 string-data :start (name-offset pent))))))
