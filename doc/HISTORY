@@ -1,3 +1,9 @@
+12.8.2011
+
+1. Remove data/wenquanyi_12ptb.pcf font file, if you want a bigger font than the default, try to download this font file from : 
+
+https://github.com/kevinlynx/klprj/blob/master/ext-blog/data/wenquanyi_12ptb.pcf
+
 12.7.2011
 
 1. Add a nil decorator to adapter to the newest restas.

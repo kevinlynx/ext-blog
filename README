@@ -1,4 +1,4 @@
-ext-blog 0.5.0 10.10.2011 updated
+ext-blog 0.7.0 12.8.2011 updated
 
 ABOUT
 
@@ -17,11 +17,35 @@ FEATURES
 
 The more is coming.
 
+PLATFORMS
+
+ext-blog do not use any compiler specific APIs, so it can run in most Common
+Lisp compilers in theory. But it still need to test. Currently ext-blog has
+been tested on those compilers:
+
+* SBCL
+* Clozure CL
+
+There compilers will be tested in the TODO list:
+
+* ABCL
+* Allegro CL
+* CLISP
+* CMUCL
+* ECL
+* LispWorks
+* Scieneer CL
+
 INSTALL
 
-Currently ext-blog is only tested on SBCL, so I strongly suggest you to use 
-SBCL. And ext-blog depends on some third-party lisp libraries, so I suggest you
-to use quick lisp to install these libraries. 
+The good news is, ext-blog is in quicklisp software list, so you can install
+ext-blog by quicklisp:
+
+    (ql:quickload 'ext-blog)
+
+Also, I still show you how to install ext-blog without quicklisp.  I will use 
+SBCL to illustrate. And ext-blog depends on some third-party lisp libraries, so
+I suggest you to use quick lisp to install these libraries. 
 
 When you download ext-blog full source codes, go to ext-blog root directory, 
 and run SBCL, i.e:
@@ -69,4 +93,12 @@ ext-blog is not well tested currently. If you find any bug or problems you can
  send me an email, and I will try to help you out. Feel free to send email to 
 me kevinlynx at gmail dot com.
 
+FAQ
+
+1. The font in verify code picuture is too small?
+
+You can find a pcf font file make the font much more bigger. Just put the font
+file in ./data and named it wenquanyi_12ptb.pcf. You can download this font 
+file from:
+https://github.com/kevinlynx/klprj/blob/master/ext-blog/data/wenquanyi_12ptb.pcf
 
