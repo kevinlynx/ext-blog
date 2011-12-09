@@ -30,18 +30,15 @@ There compilers will be tested in the TODO list:
 
 * ABCL
 * Allegro CL
-* CLISP
-* CMUCL
+* CLISP, I have tried this compiler, but failed with hunchentoot:start which
+ hangs the interpreter. After some google, I suppose it's because of CLISP 
+ thread support.
+* CMUCL, some dependent libraries can not be compiled, i.e, parenscript
 * ECL
 * LispWorks
 * Scieneer CL
 
 INSTALL
-
-The good news is, ext-blog is in quicklisp software list, so you can install
-ext-blog by quicklisp:
-
-    (ql:quickload 'ext-blog)
 
 Also, I still show you how to install ext-blog without quicklisp.  I will use 
 SBCL to illustrate. And ext-blog depends on some third-party lisp libraries, so

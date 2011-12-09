@@ -21,7 +21,7 @@
 (defun start (&key (port 8080))
   (let ((font "data/wenquanyi_12ptb.pcf"))
     (when (probe-file font)
-      (kl-verify:load-font "data/wenquanyi_12ptb.pcf")))
+      (kl-verify:load-font font)))
   (load-themes)
   (mount-file-publisher)
   (load-blog)

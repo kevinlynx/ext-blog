@@ -3,14 +3,12 @@
 ;;;; Kevin Lynx
 ;;;; 6.4.2011
 ;;;;
-(pushnew #P"deps/kl-verify/" asdf:*central-registry*)
-(pushnew #P"deps/image_0.10/" asdf:*central-registry*)
 
 (defsystem ext-blog
     :depends-on (#:restas #:cl-store #:closure-template #:local-time
-                 #:kl-verify
+                 #:ext-blog.dep
                  #:s-xml-rpc
-                 #:cl-fad #:restas.file-publisher)
+                 #:cl-fad)
     :components
     ((:module "src"
               :components
@@ -24,7 +22,7 @@
                          (:file "user")
                          (:file "blog" :depends-on ("user" "post" "comment"))
                          (:file "store-blog" :depends-on ("blog")))
-                        :depends-on ("utils" "themes"))
+                        :depends-on ("utils" ))
                (:file "rsstmpl" :depends-on ("utils"))
                (:file "rss" :depends-on ("rsstmpl" "model" "routes"))
                (:file "drawer-dispatch" 

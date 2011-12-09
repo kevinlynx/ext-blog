@@ -17,6 +17,9 @@
 (defun src-pathname ()
   (merge-pathnames "src/" (root-pathname)))
 
+(defun static-pathname ()
+  (merge-pathnames "static/" (root-pathname)))
+
 (defun string-empty (s)
   (or (null s)
       (= (length s) 0)))

@@ -13,7 +13,7 @@
 
 ;;; Used to server theme static files like css, images etc.
 (defvar *publish-files* nil)
-(defvar *publish-root* #P"theme/")
+(defvar *publish-root* (theme-pathname))
 (defvar *entry-static* "static/")
 (defvar *entry-static-path* (merge-pathnames *entry-static*
                                              *publish-root*))

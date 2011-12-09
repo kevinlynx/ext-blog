@@ -7,7 +7,5 @@
 (defsystem restas.file-publisher
     :depends-on (#:restas #:cl-fad)
     :components
-    ((:module "file-publisher"
-              :components
-              ((:file "file-publisher")))))
+    ((:file "file-publisher")))
 

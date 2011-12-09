@@ -1,3 +1,8 @@
+12.9.2011
+
+1. Support start ext-blog in any directories, instead ext-blog root path, A GREAT CHANGE
+2. Move file-publisher to deps directory
+
 12.8.2011
 
 1. Remove data/wenquanyi_12ptb.pcf font file, if you want a bigger font than the default, try to download this font file from : 
