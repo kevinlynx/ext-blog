@@ -1,9 +1,11 @@
-;;;;
 ;;;; themes.lisp
-;;;; Manage theme load operations.
-;;;; 6.7.2011
-;;;; Kevin Lynx
 ;;;;
+;;;; This file is a part of ext-blog, a common lisp blog engine.
+;;;; See file doc/LICENSE for license details.
+;;;;
+;;;; Manage theme load operations.
+;;;;
+;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (in-package #:ext-blog)
 
 (export '(theme-name theme-desc theme-type theme-update theme-resources

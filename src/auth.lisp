@@ -1,8 +1,9 @@
-;;;;
 ;;;; auth.lisp
-;;;; Kevin Lynx
-;;;; 6.9.2011
 ;;;;
+;;;; This file is a part of ext-blog, a common lisp blog engine.
+;;;; See file doc/LICENSE for license details.
+;;;;
+;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (in-package #:ext-blog)
 
 ;;; cookie stuff

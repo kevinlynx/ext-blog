@@ -1,8 +1,9 @@
-;;;;
 ;;;; user.lisp
-;;;; Kevin Lynx
-;;;; 6.9.2011
 ;;;;
+;;;; This file is a part of ext-blog, a common lisp blog engine.
+;;;; See file doc/LICENSE for license details.
+;;;;
+;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (in-package #:ext-blog)
 
 (export '(create-user load-user store-user 
@@ -44,8 +45,7 @@
 (defun valid-token-p (user token)
   (find-if #'(lambda (tok) (string= tok token)) (user-tokens user)))
 
-(defvar *user-store-path*
-  (merge-pathnames "store/users.store" (root-pathname)))
+(defvar *user-store-path* (merge-pathnames "users.store" *store-path*))
 
 (defmethod load-user ()
  (let ((path *user-store-path*))

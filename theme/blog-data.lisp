@@ -22,8 +22,12 @@
           get-post-comments-data
           get-all-comments-data
           get-recent-comments-brief
+          get-sys-info
           get-recent-posts-brief
           get-all-posts-data))
+
+(defun get-sys-info ()
+  (concatenate 'string "ext-blog " *ext-blog-version*))
 
 (defun get-post-time-desc (post &optional (type :created))
   "Get the time string of the post"
@@ -108,6 +112,7 @@
 
 (defun get-footer-data (blog)
   (list :author (blog-author blog)
+        :sysinfo (get-sys-info)
         :html (blog-footer-html blog)
         :loginurl (restas:genurl 'login)))
 

@@ -1,8 +1,9 @@
-;;;;
 ;;;; drawer-dispatcher.lisp
-;;;; 6.6.2011
-;;;; Kevin Lynx
 ;;;;
+;;;; This file is a part of ext-blog, a common lisp blog engine.
+;;;; See file doc/LICENSE for license details.
+;;;;
+;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (in-package #:ext-blog)
 
 (export '(render-page))

@@ -1,8 +1,9 @@
-;;;;
 ;;;; rsstmpl.lisp
-;;;; Kevin Lynx
-;;;; 8.2.2011
 ;;;;
+;;;; This file is a part of ext-blog, a common lisp blog engine.
+;;;; See file doc/LICENSE for license details.
+;;;;
+;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (in-package #:ext-blog)
 
 ;;; You must separate the 'compile tmpl' codes from rss.lisp, because if you do,
