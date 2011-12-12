@@ -25,8 +25,7 @@
     :footer-html (alist-field alist :footer-html)
     :theme (find-theme (alist-field alist :theme))))
 
-(defvar *blog-store-path*
-  (merge-pathnames "store/blog.store" (root-pathname)))
+(defvar *blog-store-path* (merge-pathnames "blog.store" *store-path*))
 
 (defun load-blog ()
   "Load a blog from storage, it will load posts and comments either."

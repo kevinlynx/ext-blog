@@ -24,8 +24,7 @@
             :accessor post-content))
   (:documentation "A post object is also called an entry."))
 
-(defvar *post-store-path*
-  (merge-pathnames "store/posts.store" (root-pathname)))
+(defvar *post-store-path* (merge-pathnames "posts.store" *store-path*))
 
 (defun gen-post-id (posts)
   (let ((ids (mapcar #'post-id posts)))

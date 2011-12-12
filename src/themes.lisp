@@ -7,68 +7,7 @@
 (in-package #:ext-blog)
 
 (export '(theme-name theme-desc theme-type theme-update theme-resources
-          mount-file-publisher push-publish-file
-          *entry-static* *entry-static-path*
           update-themes load-themes themes-count))
-
-;;; Used to server theme static files like css, images etc.
-(defvar *publish-files* nil)
-(defvar *publish-root* (theme-pathname))
-(defvar *entry-static* "static/")
-(defvar *entry-static-path* (merge-pathnames *entry-static*
-                                             *publish-root*))
-
-;;; i.e: "isimple/style.css" "isimple/image/"
-(defun push-publish-file (file)
-  "Push a file or a directory to be servered"
-  (format t "add published file (~a)~%" file)
-  (pushnew (merge-pathnames file *publish-root*) *publish-files*)) 
-            
-(defun push-entry-static-path ()
-  (push-publish-file (concatenate 'string *entry-static* "*/"))
-  (push-publish-file (concatenate 'string *entry-static* "*/*/")))
-
-(defclass nil-route (routes:proxy-route) ())
-
-(defmethod routes:route-check-conditions ((route nil-route) bindings)
-  t)
-
-(defun @nil-route-require (route)
-  (make-instance 'nil-route :target route))
-
-(defun mount-file-publisher ()
-  "Mount restas.file-publisher to serve static files"
-  (push-entry-static-path)
-  (restas:mount-submodule 
-    -view-static- (#:restas.file-publisher @nil-route-require)
-    ;; Damn url path...
-    (restas.file-publisher:*baseurl* '("view"))
-    (restas.file-publisher:*directory* *publish-root*)
-    (restas.file-publisher:*files* *publish-files*))
-  (restas:mount-submodule 
-    -page-static- (#:restas.file-publisher @nil-route-require)
-    (restas.file-publisher:*baseurl* '("page"))
-    (restas.file-publisher:*directory* *publish-root*)
-    (restas.file-publisher:*files* *publish-files*))
-  (restas:mount-submodule 
-    -manage-config-static- (#:restas.file-publisher @nil-route-require) 
-    (restas.file-publisher:*baseurl* '("manage" "configure"))
-    (restas.file-publisher:*directory* *publish-root*)
-    (restas.file-publisher:*files* *publish-files*))
-  (restas:mount-submodule 
-    -manage-post-edit- (#:restas.file-publisher @nil-route-require)
-    (restas.file-publisher:*baseurl* '("manage" "post" "edit"))
-    (restas.file-publisher:*directory* *publish-root*)
-    (restas.file-publisher:*files* *publish-files*))
-  (restas:mount-submodule 
-    -manage-static- (#:restas.file-publisher @nil-route-require)
-    (restas.file-publisher:*baseurl* '("manage"))
-    (restas.file-publisher:*directory* *publish-root*)
-    (restas.file-publisher:*files* *publish-files*))
-  (restas:mount-submodule 
-    -static- (#:restas.file-publisher @nil-route-require)
-    (restas.file-publisher:*directory* *publish-root*)
-    (restas.file-publisher:*files* *publish-files*)))
 
 (defvar *themes* nil)
 (defparameter +theme-inst+ "*THEME-INST*")
@@ -104,7 +43,7 @@
          (theme (symbol-value (find-symbol +theme-inst+ pkg))))
     (when theme
       (pushnew theme *themes*)
-      (mapcar #'push-publish-file (theme-resources theme)))))
+      (mapcar #'push-publish-theme-file (theme-resources theme)))))
 
 (defun create-theme-name (dir)
   "Create a theme name, theme name is `ext-blog.theme.*`"

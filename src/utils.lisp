@@ -17,9 +17,6 @@
 (defun src-pathname ()
   (merge-pathnames "src/" (root-pathname)))
 
-(defun static-pathname ()
-  (merge-pathnames "static/" (root-pathname)))
-
 (defun string-empty (s)
   (or (null s)
       (= (length s) 0)))
@@ -49,4 +46,12 @@
                            :element-type '(unsigned-byte 8))))
       (read-sequence ret in)
       ret)))
+
+(defclass nil-route (routes:proxy-route) ())
+
+(defmethod routes:route-check-conditions ((route nil-route) bindings)
+  t)
+
+(defun @nil-route-require (route)
+  (make-instance 'nil-route :target route))
 

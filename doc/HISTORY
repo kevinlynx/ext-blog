@@ -1,3 +1,11 @@
+12.12.2011
+
+1. Add specials.lisp to collect these config global variables like *log-path*, now 
+ext-blog will write these config files in specified directory
+2. file-publisher now support multiple directories. ext-blog now will serve static
+files in 2 directories: theme and entry static
+3. Move some shell scripts to contrib directory
+
 12.9.2011
 
 1. Support start ext-blog in any directories, instead ext-blog root path, A GREAT CHANGE

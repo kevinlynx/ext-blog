@@ -1,4 +1,4 @@
-ext-blog 0.7.0 12.8.2011 updated
+ext-blog 0.9.0 12.12.2011 updated
 
 ABOUT
 
@@ -17,6 +17,10 @@ FEATURES
 
 The more is coming.
 
+LICENSE
+
+See doc/LICENSE
+
 PLATFORMS
 
 ext-blog do not use any compiler specific APIs, so it can run in most Common
@@ -26,7 +30,7 @@ been tested on those compilers:
 * SBCL
 * Clozure CL
 
-There compilers will be tested in the TODO list:
+There compilers are not supported now:
 
 * ABCL
 * Allegro CL
@@ -40,9 +44,9 @@ There compilers will be tested in the TODO list:
 
 INSTALL
 
-Also, I still show you how to install ext-blog without quicklisp.  I will use 
-SBCL to illustrate. And ext-blog depends on some third-party lisp libraries, so
-I suggest you to use quick lisp to install these libraries. 
+I will use SBCL to illustrate how to install ext-blog. ext-blog depends on some
+third-party lisp libraries, so I suggest you to use quicklisp to install these 
+libraries. 
 
 When you download ext-blog full source codes, go to ext-blog root directory, 
 and run SBCL, i.e:
@@ -51,28 +55,25 @@ and run SBCL, i.e:
     SBCL
 
 And if you're the first time to load ext-blog, you can load dep.lisp to intall
-these third-party libraries by quick lisp first, i.e:
+these third-party libraries by quicklisp first, i.e:
 
     (load "dep.lisp")
 
-And if you already have installed quick lisp, it will download some libraries 
+And if you already have installed quicklisp, it will download some libraries 
 first.
 
 After that, everything is ready. You can load ext-blog by asdf, i.e:
 
     (asdf:load-system :ext-blog)
 
-Sometimes asdf display an error like you do not have access to create a file, 
-If so, you can run SBCL as root.
-
 After that, you can run ext-blog now, i.e:
 
     (ext-blog:start)
 
-ext-blog will launch a web server using hunchentoot at port 8000. So you can 
+ext-blog will launch a web server using hunchentoot at port 8080. So you can 
 visit it to test:
 
-    http://localhost:8000
+    http://localhost:8080
 
 If you're the first time to run ext-blog, there's no data files for your blog,
 so you will be indirected to initializing page to setup your blog. The setup 

@@ -6,8 +6,8 @@ user=$1
 port=$2
 path=$3
 pack=ext-blog.tar.gz
-./make-dist.sh
+./contrib/make-dist.sh
 echo 'upload to ' $port $user:$path
-scp -P $port $pack update-blog.sh $user:$path
+scp -P $port $pack ./contrib/update-blog.sh $user:$path
 ssh -p $port $user 
 

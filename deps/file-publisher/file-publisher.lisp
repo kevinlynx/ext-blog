@@ -15,7 +15,7 @@
 ;;; i.e: '("src/model/" "src/routes.lisp")
 (defvar *files* nil "A list of files to be published, can be a path.")
 
-;;; i.e: "src/"
+;;; i.e: '("src/")
 (defvar *directory* nil "The root directory")
 
 (defun parse-native-namestring (thing)
@@ -34,11 +34,13 @@
 
 (restas:define-route route ("*path" :method :get)
   (let* ((relative-path (parse-native-namestring (format nil "~{~A~^/~}" path)))
-         (path (merge-pathnames relative-path
-                                *directory*)))
-    ;(format t "~a~%~a~%" path *files*)
-    (cond
-      ((fad:directory-pathname-p path) hunchentoot:+http-bad-request+)
-       ((not (fad:file-exists-p path)) hunchentoot:+http-not-found+)
-       (t (if (publish-file-p path) path hunchentoot:+http-not-found+)))))
+         (path (find-if #'(lambda (dir)
+                            (let ((path (merge-pathnames relative-path dir)))
+                              (and (not (fad:directory-pathname-p path))
+                                   (fad:file-exists-p path)
+                                   (publish-file-p path))))
+                        *directory*)))
+    (if path
+      (merge-pathnames relative-path path)
+      hunchentoot:+http-not-found+)))
 

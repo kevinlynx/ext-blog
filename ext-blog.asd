@@ -14,7 +14,9 @@
               :components
               ((:file "defmodule")
                (:file "utils" :depends-on ("defmodule"))
-               (:file "themes" :depends-on ("utils"))
+               (:file "specials" :depends-on ("defmodule"))
+               (:file "file-publisher" :depends-on ("utils" "specials"))
+               (:file "themes" :depends-on ("file-publisher"))
                (:module "model"
                         :components 
                         ((:file "post")
@@ -22,7 +24,7 @@
                          (:file "user")
                          (:file "blog" :depends-on ("user" "post" "comment"))
                          (:file "store-blog" :depends-on ("blog")))
-                        :depends-on ("utils" ))
+                        :depends-on ("utils" "specials"))
                (:file "rsstmpl" :depends-on ("utils"))
                (:file "rss" :depends-on ("rsstmpl" "model" "routes"))
                (:file "drawer-dispatch" 
@@ -34,7 +36,7 @@
                 :depends-on ("defmodule" "model" "auth" "verify-code"))
                (:file "xmlrpc" :depends-on ("defmodule" "model" "ext-blog"))
                (:file "ext-blog" 
-                :depends-on ("routes" "themes" "drawer-dispatch" "model"))))
+                :depends-on ("specials" "routes" "themes" "drawer-dispatch" "model"))))
      (:module "theme"
               :components
               ((:file "blog-data"))

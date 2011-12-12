@@ -35,8 +35,7 @@
 
 (defgeneric load-comments ())
 
-(defvar *comment-store-path*
-  (merge-pathnames "store/comments.store" (root-pathname)))
+(defvar *comment-store-path* (merge-pathnames "comments.store" *store-path*))
 
 (defun gen-comment-id (comments)
   (let ((ids (mapcar #'comment-id comments)))

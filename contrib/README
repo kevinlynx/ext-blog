@@ -1,0 +1,36 @@
+This directory contains some shell script to manage an ext-blog on a VPS.
+Actually they're only useful for me. Everytime after I changed some features of
+ ext-blog, I can upload the whole ext-blog source codes to VPS, and SSH to VPS
+to restart the server (or reload the source codes).
+
+In ext-blog root directory:
+
+contrib/upload-dist.sh abc@codemacro.com 21 /home/test
+
+This script will upload the full ext-blog source codes to VPS directory 
+/home/test, and it ssh to the VPS. 
+
+And now you're login the VPS, go to /home/test, and:
+
+tar xvf ext-blog.tar.gz 
+
+It will tar source codes in dist/ directory. Go to the directory and start 
+ext-blog:
+
+cd dist
+contrib/run-blog.sh
+
+This will run ext-blog as a GNU screen session. If the blog already run, you 
+can:
+
+./update-blog.sh
+
+This script will attach the ext-blog GNU screen seesion, and in SBCL, you can:
+
+(asdf:load-system :ext-blog)
+
+to reload all source codes.
+
+Kevin Lynx
+12.12.2011
+
