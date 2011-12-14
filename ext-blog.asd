@@ -1,12 +1,14 @@
-;;;;
 ;;;; ext-blog.asd
-;;;; Kevin Lynx
-;;;; 6.4.2011
 ;;;;
+;;;; This file is a part of ext-blog, a common lisp blog engine.
+;;;; See file doc/LICENSE for license details.
+;;;;
+;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 
 (defsystem ext-blog
+    :author "Kevin Lynx <kevinlynx@gmail.com>"
     :depends-on (#:restas #:cl-store #:closure-template #:local-time
-                 #:ext-blog.dep
+                 #:kl-verify #:image #:restas.file-publisher
                  #:s-xml-rpc
                  #:cl-fad)
     :components

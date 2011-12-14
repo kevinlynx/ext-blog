@@ -1,3 +1,7 @@
+12.14.2011
+
+1. Remove deps directory, remove the strange system to load these 3 libraries.
+
 12.12.2011
 
 1. Add specials.lisp to collect these config global variables like *log-path*, now 
