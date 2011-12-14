@@ -18,6 +18,7 @@
 
 (defsystem ext-blog
     :author "Kevin Lynx <kevinlynx@gmail.com>"
+    :description "A BLOG engine which supports custom theme"
     :version #.*ext-blog-version*
     :depends-on (#:restas #:cl-store #:closure-template #:local-time
                  #:kl-verify #:image #:restas.file-publisher
