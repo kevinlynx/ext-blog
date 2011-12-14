@@ -6,6 +6,7 @@
 ;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (restas:define-module #:ext-blog
   (:use common-lisp)
+  (:import-from :ext-blog-asd :*ext-blog-version*)
   )
 
 (defpackage #:xml-rpc-methods

@@ -5,8 +5,20 @@
 ;;;;
 ;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 
+(in-package :cl-user)
+
+(defpackage :ext-blog-asd
+  (:use :cl :asdf))
+
+(in-package :ext-blog-asd)
+
+(defvar *ext-blog-version* "0.9.1")
+
+(export '*ext-blog-version*)
+
 (defsystem ext-blog
     :author "Kevin Lynx <kevinlynx@gmail.com>"
+    :version #.*ext-blog-version*
     :depends-on (#:restas #:cl-store #:closure-template #:local-time
                  #:kl-verify #:image #:restas.file-publisher
                  #:s-xml-rpc

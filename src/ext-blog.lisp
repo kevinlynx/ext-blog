@@ -6,9 +6,7 @@
 ;;;; Author: Kevin Lynx (kevinlynx at gmail dot com)
 (in-package #:ext-blog)
 
-(export '(*ext-blog-version* start))
-
-(defvar *ext-blog-version* "0.9.0")
+(export '(start))
 
 (defun get-acceptor (port)
   (find port restas::*acceptors* :key #'hunchentoot:acceptor-port))
