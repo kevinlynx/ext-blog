@@ -98,5 +98,5 @@ FAQ
 You can find a pcf font file make the font much more bigger. Just put the font
 file in ./font and named it wenquanyi_12ptb.pcf. You can download this font 
 file from:
-https://github.com/kevinlynx/klprj/blob/master/ext-blog/data/wenquanyi_12ptb.pcf
+https://github.com/kevinlynx/ext-blog-data/blob/master/font/wenquanyi_12ptb.pcf
 
