@@ -5,6 +5,10 @@ ABOUT
 ext-blog is a common lisp blog engine. It supports custom theme and you can
 port a WordPress theme for it.
 
+A sample ext-blog powered website can be found at my personal blog site:
+
+    http://codemacro.com
+
 FEATURES
 
 * Basic blog engine features including: post an entry, display an entry, post
