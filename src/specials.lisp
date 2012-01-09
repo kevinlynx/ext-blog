@@ -14,4 +14,5 @@
 (defvar *store-path* (merge-pathnames "store/" *data-root*))
 (defvar *font-path* (merge-pathnames "font/wenquanyi_12ptb.pcf" *data-root*))
 (defvar *log-path* (merge-pathnames "log/" *data-root*))
+(defvar *enable-log* nil)
 

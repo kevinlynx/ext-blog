@@ -8,16 +8,21 @@
 
 (export '(start))
 
-(defun get-acceptor (port)
-  (find port restas::*acceptors* :key #'hunchentoot:acceptor-port))
+(defparameter *access-log-path* 
+  (and *enable-log* (merge-pathnames "ext-blog-access.log" *log-path*)))
+(defparameter *message-log-path* 
+  (and *enable-log* (merge-pathnames "ext-blog-message.log" *log-path*)))
 
-(defun set-log (acceptor)
-  (let ((access-log-path (merge-pathnames "ext-blog-access.log" *log-path*))
-        (message-log-path (merge-pathnames "ext-blog-message.log" *log-path*)))
-    (ensure-directories-exist access-log-path)
-    (ensure-directories-exist message-log-path)
-    (setf (hunchentoot:acceptor-access-log-destination acceptor) access-log-path)
-    (setf (hunchentoot:acceptor-message-log-destination acceptor) message-log-path)))
+(defun create-log-path ()
+  (when *enable-log*
+    (ensure-directories-exist *access-log-path*)
+    (ensure-directories-exist *message-log-path*)))
+
+(defclass ext-blog-acceptor (restas:restas-acceptor)
+  ()
+  (:default-initargs
+   :access-log-destination *access-log-path*
+   :message-log-destination *message-log-path*))
 
 (defun start (&key (port 8080))
   (when (probe-file *font-path*)
@@ -26,17 +31,6 @@
   (mount-file-publisher)
   (load-blog)
   (xml-rpc-methods:set-metaweblog-api)
-  (restas:start 'ext-blog :port port)
-  (set-log (get-acceptor port)))
-
-;;; If use this, sometimes the file publisher will not work, wired bug
-#|
-(restas:define-initialization (context)
-  (declare (ignore context))
-  (load-themes)
-  (mount-file-publisher)
-  (load-blog)
-  (set-log)
-  (xml-rpc-methods:set-metaweblog-api))
-|#
+  (create-log-path)
+  (restas:start 'ext-blog :port port :acceptor-class 'ext-blog-acceptor))
 

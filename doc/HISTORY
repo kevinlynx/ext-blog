@@ -1,3 +1,7 @@
+1.9.2012
+
+1. Set the log path by a custorm acceptor, and and a feature *enable-log*.
+
 12.14.2011
 
 1. Remove deps directory, remove the strange system to load these 3 libraries.

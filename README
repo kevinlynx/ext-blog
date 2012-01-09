@@ -1,4 +1,4 @@
-ext-blog 0.9.0 12.12.2011 updated
+ext-blog 0.9.1 1.9.2012 updated
 
 ABOUT
 
@@ -30,7 +30,7 @@ been tested on those compilers:
 * SBCL
 * Clozure CL
 
-There compilers are not supported now:
+These compilers are not well tested now:
 
 * ABCL
 * Allegro CL
@@ -44,27 +44,10 @@ There compilers are not supported now:
 
 INSTALL
 
-I will use SBCL to illustrate how to install ext-blog. ext-blog depends on some
-third-party lisp libraries, so I suggest you to use quicklisp to install these 
-libraries. 
+You can use quicklisp to install ext-blog now (since 1.7.2012). So you can 
+install ext-blog by :
 
-When you download ext-blog full source codes, go to ext-blog root directory, 
-and run SBCL, i.e:
-
-    cd ext-blog
-    SBCL
-
-And if you're the first time to load ext-blog, you can load dep.lisp to intall
-these third-party libraries by quicklisp first, i.e:
-
-    (load "dep.lisp")
-
-And if you already have installed quicklisp, it will download some libraries 
-first.
-
-After that, everything is ready. You can load ext-blog by asdf, i.e:
-
-    (asdf:load-system :ext-blog)
+    (ql:quickload 'ext-blog)
 
 After that, you can run ext-blog now, i.e:
 
@@ -76,14 +59,33 @@ visit it to test:
     http://localhost:8080
 
 If you're the first time to run ext-blog, there's no data files for your blog,
-so you will be indirected to initializing page to setup your blog. The setup 
+so you will be redirected to initializing page to setup your blog. The setup 
 page only needs admin user name and password.
 
 After that, everytime you want to launch ext-blog, you can only load it in SBCL
  and start it, i.e:
 
-    (asdf:load-system :ext-blog)
+    (ql:quickload 'ext-blog)
     (ext-blog:start)
+
+NOTE: if you install ext-blog by quicklisp, it maybe not the latest version, so
+something will no work described in this document. You can get the latest 
+version from Github.
+
+Configuration
+
+ext-blog has some path relative configuration like data store path, log path 
+etc. You can config these path by modifying src/specials.lisp.
+
+In src/specials.lisp:
+
+*data-root*: The root path for all data files, the default is currently path 
+where you launched lisp compiler. 
+*entry-static-path*: Store the uploaded images by metaweblog API.
+*store-path*: Store the blog data like posts, comments etc.
+*font-path*: the font file used to generate verify picture.
+*log-path*: The log file path.
+*enable-log*: t or nil, to enable/disable log.
 
 Reporting Bugs
 
