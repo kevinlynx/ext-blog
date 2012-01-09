@@ -102,3 +102,15 @@ file in ./font and named it wenquanyi_12ptb.pcf. You can download this font
 file from:
 https://github.com/kevinlynx/ext-blog-data/blob/master/font/wenquanyi_12ptb.pcf
 
+2. When I visit localhost:8080 I got an error something like:
+
+  Recursive lock attempt #S(SB-THREAD:MUTEX
+                            :NAME "global-message-log-lock"
+                            :%OWNER #<SB-THREAD:THREAD
+                                      "hunchentoot-worker-127.0.0.1:58031" RUNNING
+                                      {B166361}>
+                            :STATE 1).
+
+Actually this is a misleading error message. Just rm log and store directory in 
+your *data-root* path which default in your current path.
+
