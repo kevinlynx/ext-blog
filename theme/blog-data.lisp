@@ -119,7 +119,7 @@
 (defun get-head-data (blog)
   "Get the blog menu data"
   (list :index (restas:genurl 'index)
-        :new (restas:genurl 'new-post)
+        ;;:new (restas:genurl 'new-post)
         :login (restas:genurl 'login)
         :about (restas:genurl 'view :id 0)
         :blogname (blog-title blog)

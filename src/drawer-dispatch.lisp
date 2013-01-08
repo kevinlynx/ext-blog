@@ -30,6 +30,3 @@
     (if theme
       (render-page blog theme (restas:route-symbol restas:*route*) (getf data :args))
       (car (getf data :args)))))
-
-(setf *default-render-method* (make-instance 'drawer-dispatcher))
-

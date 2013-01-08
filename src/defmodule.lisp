@@ -7,6 +7,8 @@
 (restas:define-module #:ext-blog
   (:use common-lisp)
   (:import-from :ext-blog-asd :*ext-blog-version*)
+  (:render-method (make-instance (find-symbol "DRAWER-DISPATCHER" '#:ext-blog)))
+  (:export-route-symbols t)
   )
 
 (defpackage #:xml-rpc-methods
