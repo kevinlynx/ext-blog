@@ -31,12 +31,12 @@
 (restas:define-route index ("index")
   (format-args :normal))
 
-(restas:define-route view ("view/:id"
-                                :parse-vars (list :id #'parse-integer))
+(restas:define-route view ("view/:id")
+  (:sift-variables (id #'parse-integer))
   (format-args :normal id))
 
-(restas:define-route page ("page/:id"
-                           :parse-vars (list :id #'parse-integer))
+(restas:define-route page ("page/:id")
+  (:sift-variables (id #'parse-integer))
   (format-args :normal id))
 
 (restas:define-route new-comment-done ("new-comment"
@@ -103,8 +103,8 @@
   (when (check-login 'manage/comment 'login)
     (format-args :admin)))
 
-(restas:define-route manage/comment/delete/id ("manage/comment/delete/:id"
-                                     :parse-vars (list :id #'parse-integer))
+(restas:define-route manage/comment/delete/id ("manage/comment/delete/:id")
+  (:sift-variables (id #'parse-integer))
   (when (check-login 'manage 'login)
     (delete-comment *blog* id)
     (restas:redirect 'manage/comment)
@@ -118,22 +118,22 @@
     (restas:redirect 'manage/comment)
     (format-args :admin)))
 
-(restas:define-route manage/post/delete/id ("manage/post/delete/:id"
-                                            :parse-vars (list :id #'parse-integer))
+(restas:define-route manage/post/delete/id ("manage/post/delete/:id")
+  (:sift-variables (id #'parse-integer))
   (when (check-login 'manage 'login)
     (delete-post *blog* id)
     (restas:redirect 'manage/post)
     (format-args :admin)))
 
-(restas:define-route manage/post/edit/id ("manage/post/edit/:id"
-                                          :parse-vars (list :id #'parse-integer))
+(restas:define-route manage/post/edit/id ("manage/post/edit/:id")
+  (:sift-variables (id #'parse-integer))
   (when (check-login 'manage 'login)
     (format-args :admin id)))
 
 ;;; There's a client bug, sometimes we canot receive the modified content
 (restas:define-route manage/post/edit/id-done ("manage/post/edit/:id"
-                                               :parse-vars (list :id #'parse-integer)
                                                :method :post)
+  (:sift-variables (id #'parse-integer))
   (when (check-login 'manage 'login)
     (if (not (string-empty (params "title")))
       (progn
